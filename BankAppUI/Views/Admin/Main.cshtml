@@ -1,0 +1,62 @@
+﻿@model BankAppUI.ViewModels.CustomerViewModel
+
+
+<div class="card">
+    <div class="card-body">
+        <form asp-controller="Admin" asp-action="Main">
+            <p>
+                KundID: <input type="text" name="SearchString" />
+                <input type="submit" value="Sök" />
+            </p>
+        </form>
+        @ViewBag.Message
+    </div>
+</div>
+
+<div class="jumbotron">
+    <h2 class="display-3">Namn: @Model.CurrentCustomer.Givenname @Model.CurrentCustomer.Surname</h2>
+    <hr class="my-3" />
+    <p class="lead">KundID: @Model.CurrentCustomer.CustomerId</p>
+
+
+</div>
+
+    
+<div class="card">
+    <div class="card-body">
+        @foreach (var loan in Model.Loans)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item"><p>LånID: @loan.LoanId</p></li>
+                        <li class="list-group-item"><p>Belopp: @loan.Amount</p></li>
+                        <li class="list-group-item"><p>Datum: @loan.Date</p></li>
+                        <li class="list-group-item"><p>Längd: @loan.Duration</p></li>
+                        <li class="list-group-item"><p>Betalning: @loan.Payments</p></li>
+                        <li class="list-group-item"><p>Status: @loan.Status</p></li>
+                    </ul>
+
+                    @if (@loan.Status == "Not approved")
+                    {
+
+                        var parms = new Dictionary<string, string>
+                            {
+                            { "loanId", Convert.ToString(loan.LoanId)},
+                            { "customerId", Convert.ToString(Model.CurrentCustomer.CustomerId) }
+                        };
+                        <a asp-controller="Admin" asp-action="ApproveLoan" asp-all-route-data="parms">Godkänn lån</a>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+    <br /><br />
+
+    <a asp-controller="Account" asp-action="Register">Skapa användarkonto</a>
+    <br />
+    <a asp-controller="Admin" asp-action="CreateCustomer">Skapa kund</a>
+

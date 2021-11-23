@@ -1,0 +1,11 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using BankAppUI.ModelsIdentity
+
+@inject SignInManager<ApplicationUser> signInManager
+@inject UserManager<ApplicationUser> userManager
+
+
+@if (signInManager.IsSignedIn(User))
+{
+    <a class="nav-link text-dark" asp-controller="Account" asp-action="LogOff">Logga ut</a>
+}

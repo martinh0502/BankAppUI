@@ -1,0 +1,12 @@
+﻿@model BankAppUI.ViewModels.TransactionViewModel
+
+<h3>Visar transaktioner för kontonr: @Model.accountId</h3>
+
+<div class="transactions">
+    <ul class="list-group">
+        @foreach (var trans in Model.list)
+        {
+            <li class="list-group-item">TransaktionsID: @trans.TransactionId Belopp: @trans.Amount Datum: @trans.Date</li>
+        }
+    </ul>
+</div>

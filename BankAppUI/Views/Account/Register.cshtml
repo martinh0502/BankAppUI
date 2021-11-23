@@ -1,0 +1,44 @@
+﻿@model BankAppUI.Models.NewUser
+
+
+
+<div class="card">
+    <div class="card-body">
+        <form asp-controller="Account" asp-action="Register" method="post">
+
+            <div class="form-group">
+                <label asp-for="UserName"></label>
+                <input required class="form-control" asp-for="UserName" type="text" />
+            </div>
+
+            
+
+
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input required class="form-control" asp-for="Password" type="password" />
+            </div>
+
+
+            
+
+            <div class="form-group">
+                <label asp-for="CustomerId"></label>
+                <input required class="form-control" asp-for="CustomerId" type="text" />
+            </div>
+
+
+           
+
+
+
+            <button class="btn btn-primary" type="submit">Skapa konto</button>
+
+            <p>@ViewBag.Message</p>
+
+
+
+
+        </form>
+    </div>
+</div>

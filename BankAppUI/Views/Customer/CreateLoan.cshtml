@@ -1,0 +1,24 @@
+﻿@model BankAppUI.Models.Loan
+
+
+<form asp-controller="Customer" asp-action="CreateLoan" method="post">
+
+    <div class="form-group">
+        <input class="form-control" type="text" readonly asp-for="@Model.AccountId" value="@Model.AccountId"/>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Amount">Hur mycket vill du låna?</label>
+        <input required class="form-control" asp-for="@Model.Amount" type="number" />
+    </div>
+
+    
+
+    <div class="form-group">
+        <label asp-for="@Model.Duration">Hur lång tid?</label>
+        <input required class="form-control" asp-for="@Model.Duration" type="number" />
+    </div>
+
+    <button class="btn btn-primary" type="submit">Skicka</button>
+
+</form>

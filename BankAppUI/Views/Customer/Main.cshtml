@@ -1,0 +1,67 @@
+﻿@model BankAppUI.ViewModels.CustomerViewModel
+
+
+<div class="customer">
+    
+        <div class="jumbotron">
+            <h2 class="display-3">Namn: @Model.CurrentCustomer.Givenname @Model.CurrentCustomer.Surname</h2>
+            <hr class="my-3" />
+            <p class="lead">KundID: @Model.CurrentCustomer.CustomerId</p>
+                
+            
+        </div>
+        <div class="card">
+            
+            <div class="card-body">
+                <h5 class="card-title">Konton</h5>
+                @foreach (var acc in Model.Accounts)
+                {
+                    <div class="card">
+                        <div class="card-body">
+                            <p>KontoID: @acc.AccountId</p>
+                            <p>Saldo: @acc.Balance</p>
+                            <a asp-controller="Customer" asp-action="ViewTransactions" asp-route-id="@acc.AccountId">Se transaktioner</a>
+                            <a asp-controller="Customer" asp-action="CreateLoan" asp-route-id="@acc.AccountId">Skapa lån</a>
+                        </div>
+                    </div>
+                }
+                <a asp-controller="Customer" asp-action="CreateAccount">Skapa konto</a>
+            </div>
+        </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Lån</h5>
+                    @foreach (var loan in Model.Loans)
+                    {
+                        <div class="card">
+                            <div class="card-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item"><p>LånID: @loan.LoanId</p></li>
+                                    <li class="list-group-item"><p>Belopp: @loan.Amount</p></li>
+                                    <li class="list-group-item"><p>Datum: @loan.Date</p></li>
+                                    <li class="list-group-item"><p>Längd: @loan.Duration</p></li>
+                                    <li class="list-group-item"><p>Betalning: @loan.Payments</p></li>
+                                    <li class="list-group-item"><p>Status: @loan.Status</p></li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+</div>
+        <div class="card">
+            <div class="card-body">
+                <a asp-controller="Customer" asp-action="Transfer">Överföring</a>
+            </div>
+        </div>
+    
+
+
+
+
+
+
+
+
